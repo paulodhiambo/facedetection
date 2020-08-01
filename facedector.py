@@ -4,7 +4,7 @@ import cv2
 
 #  Load the front face images dataset
 trained_face_data = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
-# img = cv2.imread("elon.jpg")
+# img = cv2.imread("images/elon.jpg")
 
 # capture image from a webcam
 webcam = cv2.VideoCapture(0)
@@ -20,17 +20,11 @@ while True:
     for (x, y, w, h) in face_coordinates:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (randrange(256), randrange(256), randrange(256)), 2)
 
-    cv2.imshow("Codepro face detector", frame)
-    cv2.waitKey(1)
-    """
-    # detect faces
-    face_coordinates = trained_face_data.detectMultiScale(greyscale_img)
-    print(face_coordinates)
-    # draw rectangle around the face
-    for (x, y, w, h) in face_coordinates:
-        cv2.rectangle(frame, (x, y), (x + w, y + h), (randrange(256), randrange(256), randrange(256)), 2)
+    cv2.imshow("CodePro face detector", frame)
+    key = cv2.waitKey(1)
 
-    cv2.imshow("Codepro face detector", img)
-    cv2.waitKey()
-    print("completed")
-    """
+    # Quit if Q is pressed
+    if key == 81 or key == 113:
+        break
+# Release the video object
+webcam.release()
